@@ -9,7 +9,7 @@ COPY . /app
 WORKDIR /app
 
 # expose the port
-EXPOSE 1985
+EXPOSE 9091
 
 # run the app
 ENTRYPOINT ["python", "app.py"]
