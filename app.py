@@ -6,7 +6,7 @@ import time
 # Get go2rtc path from argument or environment variablev1
 import sys
 import os
-go2rtc_api_url = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("GO2RTC_API_URL", "http://localhost:1984/api/streams")
+go2rtc_api_url = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("GO2RTC_API_URL", "http://localhost:1985/api/streams")
 
 from flask import Flask
 from prometheus_client import generate_latest, Counter
@@ -86,4 +86,4 @@ def metrics():
 
 if __name__ == '__main__':
     # Start the Flask app on port 1985
-    app.run(port=1985, host="0.0.0.0")
+    app.run(port=9091, host="0.0.0.0")
