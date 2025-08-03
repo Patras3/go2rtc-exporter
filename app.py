@@ -8,7 +8,7 @@ import sys
 import os
 go2rtc_api_url = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("GO2RTC_API_URL", "http://localhost:1985/api/streams")
 
-from flask import Flask
+from flask import Flask, Response
 from prometheus_client import generate_latest, Counter
 app = Flask(__name__)
 request_counter = Counter('http_requests_total', 'Total HTTP Requests', ['method', 'endpoint'])
@@ -82,7 +82,7 @@ def metrics():
     # Update Prometheus metrics
     update_metrics(api_data)
     # Return the metrics
-    return generate_latest()
+    return Response(generate_latest(), mimetype='text/plain; version=0.0.4; charset=utf-8')
 
 if __name__ == '__main__':
     # Start the Flask app on port 1985
